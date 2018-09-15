@@ -59,7 +59,7 @@ class simpleGallery {
 
     private carousellBuilder(images: any[]): void {
         images.forEach((element, index) => {
-            this.imgSources.push(element.image);
+            this.imgSources.push(element);
         });
         this.elemNumber = this.imgSources.length - 1;
         this.slideImage(this.iter);
@@ -84,12 +84,12 @@ class simpleGallery {
         }, this.config.timeOut);
     }
 
-    private showImage(imgSrc: string): void {
+    private showImage(img: any): void {
         //mark old as old
         this.removeOldImage();
         // new image builder
         const image = new Image();
-        image.useMap = imgSrc;
+        image.useMap = img.image;
         const imgElement = document.createElement("img");
         imgElement.setAttribute("src", image.useMap);
         // setting some sane params

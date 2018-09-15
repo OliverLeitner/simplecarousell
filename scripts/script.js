@@ -40,7 +40,7 @@ var simpleGallery = /** @class */ (function () {
     simpleGallery.prototype.carousellBuilder = function (images) {
         var _this = this;
         images.forEach(function (element, index) {
-            _this.imgSources.push(element.image);
+            _this.imgSources.push(element);
         });
         this.elemNumber = this.imgSources.length - 1;
         this.slideImage(this.iter);
@@ -65,12 +65,12 @@ var simpleGallery = /** @class */ (function () {
             _this.slideImage(_this.iter);
         }, this.config.timeOut);
     };
-    simpleGallery.prototype.showImage = function (imgSrc) {
+    simpleGallery.prototype.showImage = function (img) {
         //mark old as old
         this.removeOldImage();
         // new image builder
         var image = new Image();
-        image.useMap = imgSrc;
+        image.useMap = img.image;
         var imgElement = document.createElement("img");
         imgElement.setAttribute("src", image.useMap);
         // setting some sane params
