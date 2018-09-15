@@ -29,8 +29,8 @@ interface Configuration {
  * image carousell
  */
 class simpleGallery {
-    private iter: number = 1;
-    private elemNumber: number = 1;
+    private iter: number = 0;
+    private elemNumber: number = 0;
     private imgSources: string[] = [];
     // defaulting the config...
     private config: Configuration = {
@@ -41,11 +41,11 @@ class simpleGallery {
         animationType: "slider",
         animationDirection: "right",
         timeOut: 4800,
-        images: {
-            1 : "images/1.jpg",
-            2 : "images/2.jpg",
-            3 : "images/3.jpg",
-        },
+        images: [
+            { "title" : "first image", "image" : "images/1.jpg" },
+            { "title" : "second image", "image" : "images/2.jpg" },
+            { "title" : "third image", "image" : "images/3.jpg" },
+        ]
     };
 
     constructor(config?: Configuration) {
@@ -58,8 +58,8 @@ class simpleGallery {
     }
 
     private carousellBuilder(images: any[]): void {
-        Object.keys(images).forEach((element) => {
-            this.imgSources[element] = images[element];
+        images.forEach((element, index) => {
+            this.imgSources.push(element.image);
         });
         this.elemNumber = this.imgSources.length - 1;
         this.slideImage(this.iter);
@@ -75,10 +75,10 @@ class simpleGallery {
             oldImage.parentNode.removeChild(oldImage);
         }
         setTimeout(() => {
-            if (this.iter < this.elemNumber) {
+            if (iter < this.elemNumber) {
                 iter = this.iter++;
             } else {
-                this.iter = 1;
+                this.iter = 0;
             }
             this.slideImage(this.iter);
         }, this.config.timeOut);

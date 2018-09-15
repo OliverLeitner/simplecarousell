@@ -12,8 +12,8 @@
  */
 var simpleGallery = /** @class */ (function () {
     function simpleGallery(config) {
-        this.iter = 1;
-        this.elemNumber = 1;
+        this.iter = 0;
+        this.elemNumber = 0;
         this.imgSources = [];
         // defaulting the config...
         this.config = {
@@ -24,11 +24,11 @@ var simpleGallery = /** @class */ (function () {
             animationType: "slider",
             animationDirection: "right",
             timeOut: 4800,
-            images: {
-                1: "images/1.jpg",
-                2: "images/2.jpg",
-                3: "images/3.jpg",
-            },
+            images: [
+                { "title": "first image", "image": "images/1.jpg" },
+                { "title": "second image", "image": "images/2.jpg" },
+                { "title": "third image", "image": "images/3.jpg" },
+            ]
         };
         // if possible, load config
         if (config) {
@@ -39,8 +39,8 @@ var simpleGallery = /** @class */ (function () {
     }
     simpleGallery.prototype.carousellBuilder = function (images) {
         var _this = this;
-        Object.keys(images).forEach(function (element) {
-            _this.imgSources[element] = images[element];
+        images.forEach(function (element, index) {
+            _this.imgSources.push(element.image);
         });
         this.elemNumber = this.imgSources.length - 1;
         this.slideImage(this.iter);
@@ -56,11 +56,11 @@ var simpleGallery = /** @class */ (function () {
             oldImage.parentNode.removeChild(oldImage);
         }
         setTimeout(function () {
-            if (_this.iter < _this.elemNumber) {
+            if (iter < _this.elemNumber) {
                 iter = _this.iter++;
             }
             else {
-                _this.iter = 1;
+                _this.iter = 0;
             }
             _this.slideImage(_this.iter);
         }, this.config.timeOut);
