@@ -1,0 +1,44 @@
+@-webkit-keyframes slide {
+  100% {
+    left: 0;
+  }
+}
+.slider_right {
+  position: absolute;
+  left: -300px;
+  max-width: 300px;
+  max-height: 200px;
+  background: grey;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  -moz-animation: slide 0.5s forwards;
+  -moz-animation-delay: 2s;
+  animation: slide 0.5s forwards;
+  animation-delay: 2s;
+}
+.slider_left {
+  position: absolute;
+  right: -300px;
+  max-width: 300px;
+  max-height: 200px;
+  background: grey;
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 2s;
+  -moz-animation: slide 0.5s forwards;
+  -moz-animation-delay: 2s;
+  animation: slide 0.5s forwards;
+  animation-delay: 2s;
+}
+div#slide_img {
+  overflow: hidden;
+  max-width: 300px;
+  max-height: 200px;
+  border: 1px solid black;
+}
+div#my_gallery {
+  clear: both;
+  float: left;
+  height: 200px;
+  width: 100%;
+  border: 1px solid red;
+}

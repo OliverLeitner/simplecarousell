@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>gallery demo</title>
+        <link rel="stylesheet" href="styles/style.css"/>
+    </head>
+    <body>
+        <div id="body">
+            <div id="head">
+                <div id="my_gallery">
+                    &nbsp;
+                </div>
+                <div class="title">
+                    <h1>Some classy Title!!!</h1>
+                </div>
+            </div>
+            <div id="content">
+                <p>Some classy body content</p>
+            </div>
+        </div>
+        <script src="scripts/script.js"></script>
+        <script>
+            var config = {
+                maxWidth: 300,
+                maxHeight: 200,
+                curImgId: "slide_img",
+                outputId: "my_gallery",
+                animationType: "slider",
+                animationDirection: "right",
+                timeOut: 9000,
+                images: {
+                    1 : "images/cat1.jpg",
+                    2 : "images/cat2.jpg",
+                    3 : "images/cat3.jpg",
+                }
+            };
+            new simpleGallery(config);
+        </script>
+    </body>
+</html>
