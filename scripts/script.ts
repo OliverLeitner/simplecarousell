@@ -40,7 +40,7 @@ interface Images {
 class simpleGallery {
     private iter: number = 0;
     private elemNumber: number = 0;
-    private imgSources: string[] = [];
+    private imgSources: Images[] = [];
     // defaulting the config...
     private config: Configuration = {
         maxWidth: 300,
@@ -66,8 +66,8 @@ class simpleGallery {
         this.carousellBuilder(this.config.images);
     }
 
-    private carousellBuilder(images: any[]): void {
-        images.forEach((element, index) => {
+    private carousellBuilder(images: Images[]): void {
+        images.forEach((element) => {
             this.imgSources.push(element);
         });
         this.elemNumber = this.imgSources.length - 1;
@@ -93,9 +93,9 @@ class simpleGallery {
         }, this.config.timeOut);
     }
 
-    private showImage(img: any): void {
+    private showImage(img: Images): void {
         //mark old as old
-        this.removeOldImage();
+        this.markOldImage();
         // new image builder
         const image: HTMLImageElement = new Image();
         image.useMap = img.image;
@@ -111,7 +111,7 @@ class simpleGallery {
         document.getElementById(this.config.outputId).appendChild(imgElement);
     }
 
-    private removeOldImage(): void {
+    private markOldImage(): void {
         const oldImage: HTMLElement = document.getElementById(this.config.curImgId);
         if (oldImage) {
             oldImage.setAttribute("id", this.config.curImgId+"_old");

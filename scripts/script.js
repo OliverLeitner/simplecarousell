@@ -47,7 +47,7 @@ var simpleGallery = /** @class */ (function () {
     }
     simpleGallery.prototype.carousellBuilder = function (images) {
         var _this = this;
-        images.forEach(function (element, index) {
+        images.forEach(function (element) {
             _this.imgSources.push(element);
         });
         this.elemNumber = this.imgSources.length - 1;
@@ -75,7 +75,7 @@ var simpleGallery = /** @class */ (function () {
     };
     simpleGallery.prototype.showImage = function (img) {
         //mark old as old
-        this.removeOldImage();
+        this.markOldImage();
         // new image builder
         var image = new Image();
         image.useMap = img.image;
@@ -90,7 +90,7 @@ var simpleGallery = /** @class */ (function () {
         // push the new img to the output element
         document.getElementById(this.config.outputId).appendChild(imgElement);
     };
-    simpleGallery.prototype.removeOldImage = function () {
+    simpleGallery.prototype.markOldImage = function () {
         var oldImage = document.getElementById(this.config.curImgId);
         if (oldImage) {
             oldImage.setAttribute("id", this.config.curImgId + "_old");
