@@ -14,14 +14,14 @@
  * for setting up the carousell
  */
 interface Configuration {
-    maxWidth: number;
-    maxHeight: number;
-    outputId: string;
-    curImgId: string;
-    animationType: string;
-    animationDirection: string;
-    timeOut: number;
-    images: object[];
+    maxWidth?: number;
+    maxHeight?: number;
+    outputId?: string;
+    curImgId?: string;
+    animationType?: string;
+    animationDirection?: string;
+    timeOut?: number;
+    images?: object[];
 }
 
 /**
@@ -51,7 +51,7 @@ class simpleGallery {
     constructor(config?: Configuration) {
         // if possible, load config
         if (config) {
-            this.config = config;
+            this.config = {...this.config, ...config};
         }
         // run stuff
         this.carousellBuilder(this.config.images);
