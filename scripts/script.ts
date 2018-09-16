@@ -21,7 +21,16 @@ interface Configuration {
     animationType?: string;
     animationDirection?: string;
     timeOut?: number;
-    images?: object[];
+    images: Images[];
+}
+
+/**
+ * actually creating an interface
+ * for the images json too...
+ */
+interface Images {
+    title: string;
+    image: string;
 }
 
 /**
