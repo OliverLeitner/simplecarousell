@@ -72,7 +72,7 @@ class simpleGallery {
         matches.forEach((match) => {
             text.replace("/"+<string>match+"/", "");
         });
-        return text;
+        return text.trim();
     }
 
     private carousellBuilder(images: Images[]): void {

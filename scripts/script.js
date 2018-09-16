@@ -51,7 +51,7 @@ var simpleGallery = /** @class */ (function () {
         matches.forEach(function (match) {
             text.replace("/" + match + "/", "");
         });
-        return text;
+        return text.trim();
     };
     simpleGallery.prototype.carousellBuilder = function (images) {
         var _this = this;
