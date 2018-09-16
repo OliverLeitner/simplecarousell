@@ -76,7 +76,7 @@ class simpleGallery {
 
     private slideImage(iter: number): void {
         // mark the existing image as old
-        const oldImage = document.getElementById(this.config.curImgId+"_old");
+        const oldImage: HTMLElement = document.getElementById(this.config.curImgId+"_old");
         // process the new image
         this.showImage(this.imgSources[iter]);
         // remove the old image AFTER loading the new one
@@ -97,9 +97,9 @@ class simpleGallery {
         //mark old as old
         this.removeOldImage();
         // new image builder
-        const image = new Image();
+        const image: HTMLImageElement = new Image();
         image.useMap = img.image;
-        const imgElement = document.createElement("img");
+        const imgElement: HTMLImageElement = document.createElement("img");
         imgElement.setAttribute("src", image.useMap);
         // setting some sane params
         imgElement.setAttribute("style", "max-width:"+
@@ -112,7 +112,7 @@ class simpleGallery {
     }
 
     private removeOldImage(): void {
-        const oldImage = document.getElementById(this.config.curImgId);
+        const oldImage: HTMLElement = document.getElementById(this.config.curImgId);
         if (oldImage) {
             oldImage.setAttribute("id", this.config.curImgId+"_old");
         }
