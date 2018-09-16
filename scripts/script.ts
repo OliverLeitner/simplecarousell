@@ -29,7 +29,7 @@ interface Configuration {
  * for the images json too...
  */
 interface Images {
-    title: string;
+    title?: string;
     image: string;
 }
 
