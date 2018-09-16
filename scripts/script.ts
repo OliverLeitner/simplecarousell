@@ -66,6 +66,15 @@ class simpleGallery {
         this.carousellBuilder(<Images[]>this.config.images);
     }
 
+    private stringCleaner(text: string): string {
+        //cleanup a string...
+        const matches: string[] = <string[]>["<", ">"];
+        matches.forEach((match) => {
+            text.replace("/"+<string>match+"/", "");
+        });
+        return text;
+    }
+
     private carousellBuilder(images: Images[]): void {
         images.forEach((element) => {
             this.imgSources.push(<Images>element);
@@ -100,21 +109,22 @@ class simpleGallery {
         const image: HTMLImageElement = <HTMLImageElement>new Image();
         image.useMap = <string>img.image;
         const imgElement: HTMLImageElement = <HTMLImageElement>document.createElement("img");
-        imgElement.setAttribute("src", <string>image.useMap);
+        imgElement.setAttribute("src", this.stringCleaner(<string>image.useMap));
         // setting some sane params
         imgElement.setAttribute("style", "max-width:"+
         <number>this.config.maxWidth+"px;max-height:"+
         <number>this.config.maxHeight+"px;");
-        imgElement.setAttribute("id", <string>this.config.curImgId);
-        imgElement.setAttribute("class", <string>this.config.animationType+"_"+<string>this.config.animationDirection);
+        imgElement.setAttribute("id", this.stringCleaner(<string>this.config.curImgId));
+        imgElement.setAttribute("class", this.stringCleaner(<string>this.config.animationType)+
+        "_"+this.stringCleaner(<string>this.config.animationDirection));
         // push the new img to the output element
         document.getElementById(<string>this.config.outputId).appendChild(<HTMLImageElement>imgElement);
     }
 
     private markOldImage(): void {
-        const oldImage: HTMLElement = <HTMLElement>document.getElementById(<string>this.config.curImgId);
+        const oldImage: HTMLElement = <HTMLElement>document.getElementById(this.stringCleaner(<string>this.config.curImgId));
         if (oldImage) {
-            oldImage.setAttribute("id", <string>this.config.curImgId+"_old");
+            oldImage.setAttribute("id", this.stringCleaner(<string>this.config.curImgId)+"_old");
         }
     }
 }

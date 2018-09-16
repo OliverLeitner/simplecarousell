@@ -45,6 +45,14 @@ var simpleGallery = /** @class */ (function () {
         // run stuff
         this.carousellBuilder(this.config.images);
     }
+    simpleGallery.prototype.stringCleaner = function (text) {
+        //cleanup a string...
+        var matches = ["<", ">"];
+        matches.forEach(function (match) {
+            text.replace("/" + match + "/", "");
+        });
+        return text;
+    };
     simpleGallery.prototype.carousellBuilder = function (images) {
         var _this = this;
         images.forEach(function (element) {
@@ -80,20 +88,21 @@ var simpleGallery = /** @class */ (function () {
         var image = new Image();
         image.useMap = img.image;
         var imgElement = document.createElement("img");
-        imgElement.setAttribute("src", image.useMap);
+        imgElement.setAttribute("src", this.stringCleaner(image.useMap));
         // setting some sane params
         imgElement.setAttribute("style", "max-width:" +
             this.config.maxWidth + "px;max-height:" +
             this.config.maxHeight + "px;");
-        imgElement.setAttribute("id", this.config.curImgId);
-        imgElement.setAttribute("class", this.config.animationType + "_" + this.config.animationDirection);
+        imgElement.setAttribute("id", this.stringCleaner(this.config.curImgId));
+        imgElement.setAttribute("class", this.stringCleaner(this.config.animationType) +
+            "_" + this.stringCleaner(this.config.animationDirection));
         // push the new img to the output element
         document.getElementById(this.config.outputId).appendChild(imgElement);
     };
     simpleGallery.prototype.markOldImage = function () {
-        var oldImage = document.getElementById(this.config.curImgId);
+        var oldImage = document.getElementById(this.stringCleaner(this.config.curImgId));
         if (oldImage) {
-            oldImage.setAttribute("id", this.config.curImgId + "_old");
+            oldImage.setAttribute("id", this.stringCleaner(this.config.curImgId) + "_old");
         }
     };
     return simpleGallery;
