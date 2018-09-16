@@ -21,7 +21,7 @@ interface Configuration {
     animationType: string;
     animationDirection: string;
     timeOut: number;
-    images: any;
+    images: object[];
 }
 
 /**
