@@ -43,7 +43,12 @@ var simpleGallery = /** @class */ (function () {
             this.config = __assign({}, this.config, config);
         }
         // run stuff
-        this.carousellBuilder(this.config.images);
+        try {
+            this.carousellBuilder(this.config.images);
+        }
+        catch (Exception) {
+            throw Exception;
+        }
     }
     simpleGallery.prototype.stringCleaner = function (text) {
         //cleanup a string...

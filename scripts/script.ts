@@ -63,7 +63,11 @@ class simpleGallery {
             this.config = {...<Configuration>this.config, ...<Configuration>config};
         }
         // run stuff
-        this.carousellBuilder(<Images[]>this.config.images);
+        try {
+            this.carousellBuilder(<Images[]>this.config.images);
+        } catch(Exception) {
+            throw Exception;
+        }
     }
 
     private stringCleaner(text: string): string {
