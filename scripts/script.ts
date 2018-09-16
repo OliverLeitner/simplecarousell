@@ -60,61 +60,61 @@ class simpleGallery {
     constructor(config?: Configuration) {
         // if possible, load config
         if (config) {
-            this.config = {...this.config, ...config};
+            this.config = {...<Configuration>this.config, ...<Configuration>config};
         }
         // run stuff
-        this.carousellBuilder(this.config.images);
+        this.carousellBuilder(<Images[]>this.config.images);
     }
 
     private carousellBuilder(images: Images[]): void {
         images.forEach((element) => {
-            this.imgSources.push(element);
+            this.imgSources.push(<Images>element);
         });
-        this.elemNumber = this.imgSources.length - 1;
-        this.slideImage(this.iter);
+        this.elemNumber = <number>this.imgSources.length - 1;
+        this.slideImage(<number>this.iter);
     }
 
     private slideImage(iter: number): void {
         // mark the existing image as old
-        const oldImage: HTMLElement = document.getElementById(this.config.curImgId+"_old");
+        const oldImage: HTMLElement = <HTMLElement>document.getElementById(this.config.curImgId+"_old");
         // process the new image
-        this.showImage(this.imgSources[iter]);
+        this.showImage(<Images>this.imgSources[<number>iter]);
         // remove the old image AFTER loading the new one
         if (oldImage) {
             oldImage.parentNode.removeChild(oldImage);
         }
         setTimeout(() => {
-            if (iter < this.elemNumber) {
-                iter = this.iter++;
+            if (<number>iter < this.elemNumber) {
+                iter = <number>this.iter++;
             } else {
                 this.iter = 0;
             }
-            this.slideImage(this.iter);
-        }, this.config.timeOut);
+            this.slideImage(<number>this.iter);
+        }, <number>this.config.timeOut);
     }
 
     private showImage(img: Images): void {
         //mark old as old
         this.markOldImage();
         // new image builder
-        const image: HTMLImageElement = new Image();
-        image.useMap = img.image;
-        const imgElement: HTMLImageElement = document.createElement("img");
-        imgElement.setAttribute("src", image.useMap);
+        const image: HTMLImageElement = <HTMLImageElement>new Image();
+        image.useMap = <string>img.image;
+        const imgElement: HTMLImageElement = <HTMLImageElement>document.createElement("img");
+        imgElement.setAttribute("src", <string>image.useMap);
         // setting some sane params
         imgElement.setAttribute("style", "max-width:"+
-        this.config.maxWidth+"px;max-height:"+
-        this.config.maxHeight+"px;");
-        imgElement.setAttribute("id", this.config.curImgId);
-        imgElement.setAttribute("class", this.config.animationType+"_"+this.config.animationDirection);
+        <number>this.config.maxWidth+"px;max-height:"+
+        <number>this.config.maxHeight+"px;");
+        imgElement.setAttribute("id", <string>this.config.curImgId);
+        imgElement.setAttribute("class", <string>this.config.animationType+"_"+<string>this.config.animationDirection);
         // push the new img to the output element
-        document.getElementById(this.config.outputId).appendChild(imgElement);
+        document.getElementById(<string>this.config.outputId).appendChild(<HTMLImageElement>imgElement);
     }
 
     private markOldImage(): void {
-        const oldImage: HTMLElement = document.getElementById(this.config.curImgId);
+        const oldImage: HTMLElement = <HTMLElement>document.getElementById(<string>this.config.curImgId);
         if (oldImage) {
-            oldImage.setAttribute("id", this.config.curImgId+"_old");
+            oldImage.setAttribute("id", <string>this.config.curImgId+"_old");
         }
     }
 }
