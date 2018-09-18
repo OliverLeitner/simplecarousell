@@ -66,7 +66,7 @@ class simpleGallery {
         try {
             this.carousellBuilder(<Images[]>this.config.images);
         } catch(Exception) {
-            throw Exception;
+            throw <ExceptionInformation>Exception;
         }
     }
 
@@ -94,7 +94,7 @@ class simpleGallery {
         this.showImage(<Images>this.imgSources[<number>iter]);
         // remove the old image AFTER loading the new one
         if (oldImage) {
-            oldImage.parentNode.removeChild(oldImage);
+            oldImage.parentNode.removeChild(<HTMLImageElement>oldImage);
         }
         setTimeout(() => {
             if (<number>iter < this.elemNumber) {
